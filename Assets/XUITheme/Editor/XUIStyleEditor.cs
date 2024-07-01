@@ -61,6 +61,13 @@ namespace XUI.Editor {
             selectedGO.AddComponent<XUIImageStyleController>();
         }
 
+        [MenuItem("XUIStyle/Create Style/TMP_Text")]
+        static void CreateTMP_TextStyle()
+        {
+            XUITmp_TextStyle asset = CreateStyleAsset<XUITmp_TextStyle>("TMP_TextStyle");
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+        }
 
         [MenuItem("XUIStyle/Create Style/Text")]
         static void CreateTextStyle() {
@@ -72,6 +79,36 @@ namespace XUI.Editor {
         [MenuItem("XUIStyle/Create Style/Image")]
         static void CreateImageStyle() {
             XUIImageStyle asset = CreateStyleAsset<XUIImageStyle>("ImageStyle");
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+        }
+
+        [MenuItem("XUIStyle/Create Style/RawImage")]
+        static void CreateRawImageStyle()
+        {
+            XUIRawImageStyle asset = CreateStyleAsset<XUIRawImageStyle>("RawImageStyle");
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+        }
+
+        [MenuItem("XUIStyle/Create Style/Button")]
+        static void CreateButtonStyle()
+        {
+            XUIButtonStyle asset = CreateStyleAsset<XUIButtonStyle>("ButtonStyle");
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+        }
+
+        [MenuItem("XUIStyle/Create Style/StyleSheet")]
+        static void CreateStyleSheet()
+        {
+            CreateStyleDirectoryIfNotExist();
+            string styleAssetPath = Path.Combine(kXUIStyleDirectoryPath,  "StyleSheet.asset");
+            styleAssetPath = AssetDatabase.GenerateUniqueAssetPath(styleAssetPath);
+            XUIStyleSheet asset = ScriptableObject.CreateInstance<XUIStyleSheet>();
+            AssetDatabase.CreateAsset(asset, styleAssetPath);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = asset;
         }

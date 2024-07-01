@@ -7,11 +7,11 @@ using XUI.Theme.Style;
 
 namespace XUI.Theme.StyleController {
 
-    public class XUIImageStyleController : XUIBaseStyleController<UnityUI.Image, XUIImageStyle> {
+    public class XUIRawImageStyleController : XUIBaseStyleController<UnityUI.RawImage, XUIRawImageStyle> {
 
         public override void ApplyStyle() {
-            UnityUI.Image image = mTargetGraphic;
-            image.sprite = style.sprite;
+            UnityUI.RawImage image = mTargetGraphic;
+            image.texture = style.texture;
             image.color = style.color;
         }
 

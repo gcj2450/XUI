@@ -28,3 +28,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/.vs
+/Logs
+/obj
+/.vsconfig
+/UserSettings

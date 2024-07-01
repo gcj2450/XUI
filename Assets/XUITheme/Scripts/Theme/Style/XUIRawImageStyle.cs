@@ -3,8 +3,8 @@ using System.Collections;
 
 namespace XUI.Theme.Style {
 
-    public class XUIImageStyle : XUIBaseStyle {
-        public Sprite sprite;
+    public class XUIRawImageStyle : XUIBaseStyle {
+        public Texture texture;
         public Color color=Color.white;
 
     }

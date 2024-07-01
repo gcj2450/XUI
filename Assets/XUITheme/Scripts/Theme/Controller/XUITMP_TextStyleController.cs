@@ -4,23 +4,20 @@ using UnityUI = UnityEngine.UI;
 using System.Collections;
 
 using XUI.Theme.Style;
-
+using TMPro;
 
 namespace XUI.Theme.StyleController {
 
     [ExecuteInEditMode]
-    public class XUITextStyleController : XUIBaseStyleController<UnityUI.Text, XUITextStyle> {
+    public class XUITMP_TextStyleController : XUIBaseStyleController<TMP_Text, XUITmp_TextStyle> {
         
         public override void ApplyStyle() {
-            UnityUI.Text text = mTargetGraphic;
+            TMP_Text text = mTargetGraphic;
             text.font = style.font;
-            text.alignment = style.alignment;
             text.fontStyle = style.fontStyle;
-            text.lineSpacing = style.lineSpacing;
             text.fontSize = style.fontSize;
+            text.alignment = style.alignment;
             text.color = style.fontColor;
-            text.horizontalOverflow = style.horizontalWrapMode;
-            text.verticalOverflow = style.verticalWrapMode;
         }
 
     }
