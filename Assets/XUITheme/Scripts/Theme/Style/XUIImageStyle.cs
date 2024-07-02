@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace XUI.Theme.Style {
+namespace XUI.Theme.Style
+{
 
-    public class XUIImageStyle : XUIBaseStyle {
+    public class XUIImageStyle : XUIBaseStyle
+    {
         public Sprite sprite;
-        public Color color=Color.white;
-
+        public Color color = Color.white;
     }
 
 }
