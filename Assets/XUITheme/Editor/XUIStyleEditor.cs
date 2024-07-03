@@ -9,7 +9,7 @@ using XUI.Theme.Style;
 using XUI.Theme.StyleController;
 
 
-namespace XUI.Editor
+namespace XUIEditor
 {
 
     public class XUIStyleEditor : EditorWindow

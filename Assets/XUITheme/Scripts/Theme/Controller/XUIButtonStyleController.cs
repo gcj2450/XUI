@@ -17,10 +17,25 @@ namespace XUI.Theme.StyleController
         public override void ApplyStyle(XUIStyleSheet xSheet)
         {
             UnityUI.Image image = mTargetGraphic;
-
+            if (xSheet.StyleComponents == null || xSheet.StyleComponents.Count == 0)
+            {
+                return;
+            }
+            if (!xSheet.StyleComponents.ContainsKey(styleKey))
+            {
+                return;
+            }
+            if (!xSheet.StyleComponents.ContainsKey(styleKey))
+            {
+                return;
+            }
+            if (xSheet.StyleComponents[styleKey] == null)
+            {
+                return;
+            }
             if (xSheet.StyleComponents[styleKey].GetType() != typeof(XUIButtonStyle))
             {
-                Debug.Log($"{xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUIButtonStyle)}");
+                Debug.Log($"gameObject: {gameObject.name} config not correct, {xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUIButtonStyle)}");
                 return;
             }
 

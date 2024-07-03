@@ -5,7 +5,7 @@ using UnityEngine;
 using XUI.Theme.Style;
 using UnityObject = UnityEngine.Object;
 
-namespace XUI.Editor
+namespace XUIEditor
 {
     public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
     {

@@ -16,10 +16,21 @@ namespace XUI.Theme.StyleController
         public override void ApplyStyle(XUIStyleSheet xSheet)
         {
             UnityUI.Text text = mTargetGraphic;
-
+            if (xSheet.StyleComponents == null || xSheet.StyleComponents.Count == 0)
+            {
+                return;
+            }
+            if (!xSheet.StyleComponents.ContainsKey(styleKey))
+            {
+                return;
+            }
+            if (xSheet.StyleComponents[styleKey] == null)
+            {
+                return;
+            }
             if (xSheet.StyleComponents[styleKey].GetType() != typeof(XUITextStyle))
             {
-                Debug.Log($"{xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUITextStyle)}");
+                Debug.Log($"gameObject: {gameObject.name} config not correct, {xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUITextStyle)}");
                 return;
             }
 

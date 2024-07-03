@@ -16,10 +16,21 @@ namespace XUI.Theme.StyleController
         public override void ApplyStyle(XUIStyleSheet xSheet)
         {
             TMP_Text text = mTargetGraphic;
-
-            if (xSheet.StyleComponents[styleKey].GetType() != typeof(XUITmp_TextStyle))
+            if (xSheet.StyleComponents == null || xSheet.StyleComponents.Count == 0)
             {
-                Debug.Log($"{xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUITmp_TextStyle)}");
+                return;
+            }
+            if (!xSheet.StyleComponents.ContainsKey(styleKey))
+            {
+                return;
+            }
+            if (xSheet.StyleComponents[styleKey] == null)
+            {
+                return;
+            }
+            if (xSheet.StyleComponents.Count == 0 || xSheet.StyleComponents[styleKey].GetType() != typeof(XUITmp_TextStyle))
+            {
+                Debug.Log($"gameObject: {gameObject.name} config not correct, {xSheet.StyleComponents[styleKey].GetType()} not match {typeof(XUITmp_TextStyle)}");
                 return;
             }
 

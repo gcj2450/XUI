@@ -3,8 +3,9 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.Collections.Generic;
 using System.Linq;
+using XUI.Theme.Style;
 
-namespace XUI.Theme.Style
+namespace XUIEditor
 {
 
     [CustomPropertyDrawer(typeof(DrawableDictionary), true)]

@@ -11,8 +11,10 @@ namespace XUI.Theme.StyleController
         where UNITY_GRAPHIC : UnityUI.Graphic
         where STYLE : XUIBaseStyle
     {
-
+        [HideInInspector]
         public string styleKey = "";
+        [HideInInspector]
+        public int selectedIndex = 0;
         public XUIStyleSheetTable styleTable;
         protected UNITY_GRAPHIC mTargetGraphic;
 
