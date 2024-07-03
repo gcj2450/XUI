@@ -9,29 +9,35 @@ using XUI.Theme.Style;
 using XUI.Theme.StyleController;
 
 
-namespace XUI.Editor {
+namespace XUI.Editor
+{
 
-    public class XUIStyleEditor : EditorWindow {
+    public class XUIStyleEditor : EditorWindow
+    {
 
         const string kResourceFolderName = "Resources";
         const string kXUIStyleFolder = "XUIStyles";
         const string kXUIStyleDirectoryPath = "Assets/Resources/XUIStyles/";
 
         [MenuItem("CONTEXT/Text/Attach XUIStyle", false)]
-        static void AttachTextStyle() {
+        static void AttachTextStyle()
+        {
             GameObject selectedGO = Selection.activeObject as GameObject;
-            if (selectedGO == null) {
+            if (selectedGO == null)
+            {
                 return;
             }
 
             UnityUI.Text text = selectedGO.GetComponent<UnityUI.Text>();
-            if (text == null) {
+            if (text == null)
+            {
                 EditorUtility.DisplayDialog("Attach failed!", "Cannot attached Text style to Non-Text component", "Ok");
                 return;
             }
 
             XUITextStyleController controller = selectedGO.GetComponent<XUITextStyleController>();
-            if (controller != null) {
+            if (controller != null)
+            {
                 EditorUtility.DisplayDialog("Already attached!", "This GameObject has already attached TextStyleController.", "Ok");
                 return;
             }
@@ -40,20 +46,24 @@ namespace XUI.Editor {
         }
 
         [MenuItem("CONTEXT/Image/Attach XUIStyle")]
-        static void AttachImageStyle() {
+        static void AttachImageStyle()
+        {
             GameObject selectedGO = Selection.activeObject as GameObject;
-            if (selectedGO == null) {
+            if (selectedGO == null)
+            {
                 return;
             }
 
             UnityUI.Image image = selectedGO.GetComponent<UnityUI.Image>();
-            if (image == null) {
+            if (image == null)
+            {
                 EditorUtility.DisplayDialog("Attach failed!", "Cannot attached Text style to Non-Text component", "Ok");
                 return;
             }
 
             XUIImageStyleController controller = selectedGO.GetComponent<XUIImageStyleController>();
-            if (controller != null) {
+            if (controller != null)
+            {
                 EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach TextStyleController.", "Ok");
                 return;
             }
@@ -70,14 +80,16 @@ namespace XUI.Editor {
         }
 
         [MenuItem("XUIStyle/Create Style/Text")]
-        static void CreateTextStyle() {
+        static void CreateTextStyle()
+        {
             XUITextStyle asset = CreateStyleAsset<XUITextStyle>("TextStyle");
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = asset;
         }
 
         [MenuItem("XUIStyle/Create Style/Image")]
-        static void CreateImageStyle() {
+        static void CreateImageStyle()
+        {
             XUIImageStyle asset = CreateStyleAsset<XUIImageStyle>("ImageStyle");
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = asset;
@@ -103,7 +115,7 @@ namespace XUI.Editor {
         static void CreateStyleSheet()
         {
             CreateStyleDirectoryIfNotExist();
-            string styleAssetPath = Path.Combine(kXUIStyleDirectoryPath,  "StyleSheet.asset");
+            string styleAssetPath = Path.Combine(kXUIStyleDirectoryPath, "StyleSheet.asset");
             styleAssetPath = AssetDatabase.GenerateUniqueAssetPath(styleAssetPath);
             XUIStyleSheet asset = ScriptableObject.CreateInstance<XUIStyleSheet>();
             AssetDatabase.CreateAsset(asset, styleAssetPath);
@@ -113,7 +125,22 @@ namespace XUI.Editor {
             Selection.activeObject = asset;
         }
 
-        static STYLE CreateStyleAsset<STYLE>(string assetName) where STYLE : XUIBaseStyle {
+        [MenuItem("XUIStyle/Create Style/StyleSheetTable")]
+        static void CreateStyleSheetTable()
+        {
+            CreateStyleDirectoryIfNotExist();
+            string styleAssetPath = Path.Combine(kXUIStyleDirectoryPath, "StyleSheetTable.asset");
+            styleAssetPath = AssetDatabase.GenerateUniqueAssetPath(styleAssetPath);
+            XUIStyleSheetTable asset = ScriptableObject.CreateInstance<XUIStyleSheetTable>();
+            AssetDatabase.CreateAsset(asset, styleAssetPath);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = asset;
+        }
+
+        static STYLE CreateStyleAsset<STYLE>(string assetName) where STYLE : XUIBaseStyle
+        {
             CreateStyleDirectoryIfNotExist();
             string styleAssetPath = Path.Combine(kXUIStyleDirectoryPath, assetName + ".asset");
             styleAssetPath = AssetDatabase.GenerateUniqueAssetPath(styleAssetPath);
@@ -124,17 +151,20 @@ namespace XUI.Editor {
             return asset;
         }
 
-        static void CreateStyleDirectoryIfNotExist() {
+        static void CreateStyleDirectoryIfNotExist()
+        {
             string rootPath = Application.dataPath;
 
             string resourceDirPath = Path.Combine(rootPath, "Resources");
-            if (!Directory.Exists(resourceDirPath)) {
+            if (!Directory.Exists(resourceDirPath))
+            {
                 Directory.CreateDirectory(resourceDirPath);
                 AssetDatabase.Refresh();
             }
 
             string styleDirPath = Path.Combine(resourceDirPath, "XUIStyles");
-            if (!Directory.Exists(styleDirPath)) {
+            if (!Directory.Exists(styleDirPath))
+            {
                 Directory.CreateDirectory(styleDirPath);
                 AssetDatabase.Refresh();
             }

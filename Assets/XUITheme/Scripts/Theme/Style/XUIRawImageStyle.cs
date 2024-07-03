@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace XUI.Theme.Style {
+namespace XUI.Theme.Style
+{
 
-    public class XUIRawImageStyle : XUIBaseStyle {
+    public class XUIRawImageStyle : XUIBaseStyle
+    {
         public Texture texture;
-        public Color color=Color.white;
+        public Color color = Color.white;
 
     }
 
