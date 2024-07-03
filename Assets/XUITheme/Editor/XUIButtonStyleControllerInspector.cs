@@ -35,7 +35,7 @@ namespace XUIEditor
                     if (keys != null && keys.Count > 0 && keys.Count > config.selectedIndex)
                     {
                         // Display a dropdown list
-                        config.selectedIndex = EditorGUILayout.Popup("Select Item", config.selectedIndex, keys.ToArray());
+                        config.selectedIndex = EditorGUILayout.Popup("Style Name", config.selectedIndex, keys.ToArray());
                         config.styleKey = keys[config.selectedIndex];
                     }
                     else
