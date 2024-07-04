@@ -7,6 +7,7 @@ using System.Collections;
 
 using XUI.Theme.Style;
 using XUI.Theme.StyleController;
+using TMPro;
 
 
 namespace XUIEditor
@@ -19,6 +20,33 @@ namespace XUIEditor
         const string kXUIStyleFolder = "XUIStyles";
         const string kXUIStyleDirectoryPath = "Assets/Resources/XUIStyles/";
 
+        [MenuItem("XUIStyle/Add Style/TMP_Text")]
+        [MenuItem("CONTEXT/TMP_Text/Attach XUIStyle")]
+        static void AttachTMP_TextStyle()
+        {
+            GameObject selectedGO = Selection.activeObject as GameObject;
+            if (selectedGO == null)
+            {
+                return;
+            }
+
+            TMP_Text image = selectedGO.GetComponent<TMP_Text>();
+            if (image == null)
+            {
+                EditorUtility.DisplayDialog("Attach failed!", "Cannot attached TMP_Text style to Non-TMP_Text component", "Ok");
+                return;
+            }
+
+            XUITMP_TextStyleController controller = selectedGO.GetComponent<XUITMP_TextStyleController>();
+            if (controller != null)
+            {
+                EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach TMP_TextStyleController.", "Ok");
+                return;
+            }
+            selectedGO.AddComponent<XUITMP_TextStyleController>();
+        }
+
+        [MenuItem("XUIStyle/Add Style/Text")]
         [MenuItem("CONTEXT/Text/Attach XUIStyle", false)]
         static void AttachTextStyle()
         {
@@ -41,10 +69,10 @@ namespace XUIEditor
                 EditorUtility.DisplayDialog("Already attached!", "This GameObject has already attached TextStyleController.", "Ok");
                 return;
             }
-
             selectedGO.AddComponent<XUITextStyleController>();
         }
 
+        [MenuItem("XUIStyle/Add Style/Image")]
         [MenuItem("CONTEXT/Image/Attach XUIStyle")]
         static void AttachImageStyle()
         {
@@ -57,18 +85,69 @@ namespace XUIEditor
             UnityUI.Image image = selectedGO.GetComponent<UnityUI.Image>();
             if (image == null)
             {
-                EditorUtility.DisplayDialog("Attach failed!", "Cannot attached Text style to Non-Text component", "Ok");
+                EditorUtility.DisplayDialog("Attach failed!", "Cannot attached Image style to Non-Image component", "Ok");
                 return;
             }
 
             XUIImageStyleController controller = selectedGO.GetComponent<XUIImageStyleController>();
             if (controller != null)
             {
-                EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach TextStyleController.", "Ok");
+                EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach ImageStyleController.", "Ok");
+                return;
+            }
+            selectedGO.AddComponent<XUIImageStyleController>();
+        }
+
+        [MenuItem("XUIStyle/Add Style/RawImage")]
+        [MenuItem("CONTEXT/RawImage/Attach XUIStyle")]
+        static void AttachRawImageStyle()
+        {
+            GameObject selectedGO = Selection.activeObject as GameObject;
+            if (selectedGO == null)
+            {
                 return;
             }
 
-            selectedGO.AddComponent<XUIImageStyleController>();
+            UnityUI.RawImage image = selectedGO.GetComponent<UnityUI.RawImage>();
+            if (image == null)
+            {
+                EditorUtility.DisplayDialog("Attach failed!", "Cannot attached RawImage style to Non-RawImage component", "Ok");
+                return;
+            }
+
+            XUIRawImageStyleController controller = selectedGO.GetComponent<XUIRawImageStyleController>();
+            if (controller != null)
+            {
+                EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach RawImageStyleController.", "Ok");
+                return;
+            }
+            selectedGO.AddComponent<XUIRawImageStyleController>();
+        }
+
+        [MenuItem("XUIStyle/Add Style/Button")]
+        [MenuItem("CONTEXT/Button/Attach XUIStyle")]
+        static void AttachButtonStyle()
+        {
+            GameObject selectedGO = Selection.activeObject as GameObject;
+            if (selectedGO == null)
+            {
+                return;
+            }
+
+            UnityUI.Button image = selectedGO.GetComponent<UnityUI.Button>();
+            if (image == null)
+            {
+                EditorUtility.DisplayDialog("Attach failed!", "Cannot attached Button style to Non-Button component", "Ok");
+                return;
+            }
+
+            XUIButtonStyleController controller = selectedGO.GetComponent<XUIButtonStyleController>();
+            if (controller != null)
+            {
+                EditorUtility.DisplayDialog("Already attached!", "This GameObject has already been attach ButtonStyleController.", "Ok");
+                return;
+            }
+            selectedGO.AddComponent<XUIButtonStyleController>();
         }
 
         [MenuItem("XUIStyle/Create Style/TMP_Text")]
@@ -170,5 +249,4 @@ namespace XUIEditor
             }
         }
     }
-
 }
