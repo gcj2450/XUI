@@ -37,6 +37,11 @@ namespace XUIEditor
                         // Display a dropdown list
                         config.selectedIndex = EditorGUILayout.Popup("Style Name", config.selectedIndex, keys.ToArray());
                         config.styleKey = keys[config.selectedIndex];
+                        // Mark the object as dirty to ensure changes are saved
+                        EditorUtility.SetDirty(config);
+
+                        // If the object is part of a prefab, register the change
+                        PrefabUtility.RecordPrefabInstancePropertyModifications(config);
                     }
                     else
                     {
